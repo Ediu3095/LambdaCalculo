@@ -1,0 +1,11 @@
+; Podemos realizar consultas introduciendo una línea con una expresión
+λxy.(y x) a b
+
+; Cada fichero puede tener una cantidad indeterminada de consultas
+λx.(y) a
+λy.(y) a
+λxy.(x y) a
+
+; Las 'constantes' de las expresiones lambda deben ser una única letra minúscula
+λxy.(y x) ab
+λ x y.(y x) a b ; Esta expresión es igual que la anterior aunque las constantes como 'a' y 'b' estén separadas

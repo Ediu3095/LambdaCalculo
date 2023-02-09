@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="LambdaCalculo:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/LambdaCalculo_jar</output-path>
+    <root id="archive" name="LambdaCalculo.jar">
+      <element id="module-output" name="LambdaCalculo" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/dependencies/antlr-runtime-4.11.1.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

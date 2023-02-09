@@ -1,0 +1,77 @@
+; Booleanos
+True  ≡ λxy.(x)
+False ≡ λxy.(y)
+If    ≡ λpxy.(pxy)
+
+And ≡ λpq.(p q False)
+Or  ≡ λpq.(p True q)
+Not ≡ λp.(p False True)
+
+; Pares ordenados
+Pair ≡ λxyt.(txy)
+Fst  ≡ λp.(p True)
+Snd  ≡ λp.(p False)
+
+; Numeros naturales
+0  ≡ λfx.(x)
+1  ≡ λfx.(fx)
+2  ≡ λfx.(f(fx))
+3  ≡ λfx.(f(f(fx)))
+4  ≡ λfx.(f(f(f(fx))))
+5  ≡ λfx.(f(f(f(f(fx)))))
+6  ≡ λfx.(f(f(f(f(f(fx))))))
+7  ≡ λfx.(f(f(f(f(f(f(fx)))))))
+8  ≡ λfx.(f(f(f(f(f(f(f(fx))))))))
+9  ≡ λfx.(f(f(f(f(f(f(f(f(fx)))))))))
+10 ≡ λfx.(f(f(f(f(f(f(f(f(f(fx))))))))))
+11 ≡ λfx.(f(f(f(f(f(f(f(f(f(f(fx)))))))))))
+12 ≡ λfx.(f(f(f(f(f(f(f(f(f(f(f(fx))))))))))))
+13 ≡ λfx.(f(f(f(f(f(f(f(f(f(f(f(f(fx)))))))))))))
+14 ≡ λfx.(f(f(f(f(f(f(f(f(f(f(f(f(f(fx))))))))))))))
+15 ≡ λfx.(f(f(f(f(f(f(f(f(f(f(f(f(f(f(fx)))))))))))))))
+16 ≡ λfx.(f(f(f(f(f(f(f(f(f(f(f(f(f(f(f(fx))))))))))))))))
+17 ≡ λfx.(f(f(f(f(f(f(f(f(f(f(f(f(f(f(f(f(fx)))))))))))))))))
+18 ≡ λfx.(f(f(f(f(f(f(f(f(f(f(f(f(f(f(f(f(f(fx))))))))))))))))))
+19 ≡ λfx.(f(f(f(f(f(f(f(f(f(f(f(f(f(f(f(f(f(f(fx)))))))))))))))))))
+20 ≡ λfx.(f(f(f(f(f(f(f(f(f(f(f(f(f(f(f(f(f(f(f(fx))))))))))))))))))))
+
+Sum  ≡ λmnfx.(mf(nfx))
+Mult ≡ λmnfx.(m(nf)x)
+
+; Operaciones básicas en los numerales de Church
+Suc    ≡ λnfx.(f(nfx))
+Iszero ≡ λn.(n (λx.(False)) True)
+
+Prefn ≡ λfp.(Pair (f (Fst p)) (Fst p))
+
+Pre ≡ λnfx.(Snd (n (Prefn f) (Pair xx)))
+Sub ≡ λmn.(n Pre m)
+
+; Listas
+Nil  ≡ λz.(z)
+Cons ≡ λxy.(Pair False (Pair xy))
+Null ≡ Fst
+Hd   ≡ λz.(Fst (Snd z))
+Tl   ≡ λz.(Snd (Snd z))
+
+; Combinadores de punto fijo
+A ≡ λar.(r(aar))
+Y ≡ A A
+
+; Recursividad
+Fact ≡ Y (λgn.(If (Iszero n) 1 (Mult n (g (Pre n)))))
+Append ≡ Y (λgzw.(If (Null z) w (Cons (Hd z) (g (Tl z) w))))
+
+; Consultas
+Fact 0
+Fact 1
+Fact 2
+Fact 3
+
+; La ejecución no es muy eficiente por lo que la resolución de algunas
+; expresiones puede tardar mucho tiempo
+; Fact 4
+
+; Por otra parte la resolución de expresiones es perezosa, por lo que
+; no se resolverán los argumentos internos si no es necesario hacerlo
+Cons 1 (Cons 2 (Cons 3 Nil))

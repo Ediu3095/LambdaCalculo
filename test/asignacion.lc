@@ -1,0 +1,14 @@
+; Podemos crear variables con ≡
+True  ≡ λxy.(x)
+False ≡ λxy.(y)
+If    ≡ λpxy.(pxy)
+
+And ≡ λpq.(p q False)
+Or  ≡ λpq.(p True q)
+Not ≡ λp.(p False True)
+
+; Las variables se pueden utilizar a la hora de realizar consultas
+And True  True
+And True  False
+And False True
+And False False
